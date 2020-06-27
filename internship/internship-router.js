@@ -15,7 +15,7 @@ router.get('/', (_req, res) => {
 					...story,
 					mentorProvided: helper.processBool(story.mentorProvided),
 					positiveInternship: helper.processBool(story.positiveInternship),
-					positionOffered: helperr.processBool(story.positionOffered),
+					positionOffered: helper.processBool(story.positionOffered),
 				};
 			});
 			res.status(200).json(updatedStories);
