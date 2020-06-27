@@ -1,55 +1,57 @@
 const express = require('express');
 
-const Onboarding = require('./onboarding-model');
+const Internship = require('./internship-model');
 
 const helper = require('../utilities/helper-functions');
 
 const router = express.Router();
 
-// GET /api/onboarding endpoint - Functional!
+// GET /api/internship endpoint
 router.get('/', (_req, res) => {
-	Onboarding.find()
+	Internship.find()
 		.then((stories) => {
 			const updatedStories = stories.map((story) => {
 				return {
 					...story,
 					mentorProvided: helper.processBool(story.mentorProvided),
-					positiveOnboarding: helper.processBool(story.positiveOnboarding),
+					positiveInternship: helper.processBool(story.positiveInternship),
+					positionOffered: helperr.processBool(story.positionOffered),
 				};
 			});
 			res.status(200).json(updatedStories);
 		})
 		.catch((err) => {
 			console.log(err);
-			res.status(500).json({ message: 'Failed to get onboarding stories' });
+			res.status(500).json({ message: 'Failed to get Internship stories' });
 		});
 });
 
-// POST /api/onboarding endpoint - ?
+// POST /api/internship endpoint
 router.post('/', (req, res) => {
 	const story = req.body;
 
 	if (story.experience) {
-		Onboarding.add(story)
+		Internship.add(story)
 			.then((saved) => {
 				saved.mentorProvided = helper.processBool(saved.mentorProvided);
-				saved.positiveOnboarding = helper.processBool(saved.positiveOnboarding);
-				res.status(201).json({ onboarding: saved });
+				saved.positiveInternship = helper.processBool(saved.positiveInternship);
+				saved.positionOffered = helper.processBool(saved.positionOffered);
+				res.status(201).json({ internship: saved });
 			})
 			.catch((err) => {
 				console.log(err);
-				res.status(500).json({ message: 'Error adding onboarding story' });
+				res.status(500).json({ message: 'Error adding Internship story' });
 			});
 	} else {
 		res
 			.status(400)
-			.json({ message: 'Please provide required onboarding information' });
+			.json({ message: 'Please provide required Internship information' });
 	}
 });
 
-// DELETE /api/onboarding/:id endpoint - Functional!
+// DELETE /api/internship endpoint
 router.delete('/:id', (req, res) => {
-	Onboarding.remove(req.params.id)
+	Internship.remove(req.params.id)
 		.then((count) => {
 			if (count) {
 				res.status(200).json({ message: 'The story has been deleted' });
