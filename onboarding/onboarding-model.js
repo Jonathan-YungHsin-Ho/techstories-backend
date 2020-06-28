@@ -4,6 +4,7 @@ module.exports = {
 	add,
 	find,
 	findById,
+	update,
 	remove,
 };
 
@@ -22,6 +23,13 @@ function find() {
 
 function findById(id) {
 	return db('onboarding').where({ id }).first();
+}
+
+function update(changes, id) {
+	return db('onboarding')
+		.where({ id })
+		.update(changes)
+		.then(() => findById(id));
 }
 
 function remove(id) {

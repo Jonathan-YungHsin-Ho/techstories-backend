@@ -47,6 +47,33 @@ router.post('/', (req, res) => {
 	}
 });
 
+// PUT /api/onboarding/:id endpoint -
+router.put('/:id', (req, res) => {
+	const { id } = req.params;
+	const changes = req.body;
+
+	Onboarding.findById(id)
+		.then((story) => {
+			if (story) {
+				Onboarding.update(changes, id).then((updated) => {
+					updated.mentorProvided = helper.processBool(updated.mentorProvided);
+					updated.positiveOnboarding = helper.processBool(
+						updated.positiveOnboarding,
+					);
+					res.status(200).json(updated);
+				});
+			} else {
+				res
+					.status(404)
+					.json({ message: 'Could not find story with provided ID' });
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).json({ message: 'Error updating the story' });
+		});
+});
+
 // DELETE /api/onboarding/:id endpoint - Functional!
 router.delete('/:id', (req, res) => {
 	Onboarding.remove(req.params.id)
@@ -62,13 +89,5 @@ router.delete('/:id', (req, res) => {
 			res.status(500).json({ message: 'Error deleting the story' });
 		});
 });
-
-// const processBool = (boolValue) => {
-// 	return boolValue === 1 || boolValue === true
-// 		? true
-// 		: boolValue === 0 || boolValue === false
-// 		? false
-// 		: null;
-// };
 
 module.exports = router;
