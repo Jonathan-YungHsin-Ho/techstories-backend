@@ -25,7 +25,7 @@ router.get('/', (_req, res) => {
 		});
 });
 
-// POST /api/onboarding endpoint - ?
+// POST /api/onboarding endpoint - Functional!
 router.post('/', (req, res) => {
 	const story = req.body;
 
