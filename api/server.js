@@ -15,8 +15,8 @@ server.use(cors());
 
 server.use('/api/onboarding', OnboardingRouter);
 server.use('/api/internship', InternshipRouter);
-server.use('./api/firstJobSearch', FirstJobSearchRouter);
-server.use('./api/codeReview', CodeReviewRouter);
+server.use('/api/firstJobSearch', FirstJobSearchRouter);
+server.use('/api/codeReview', CodeReviewRouter);
 
 server.get('/', (_req, res) => {
 	res.json({ message: 'Hello World from TechStories Backend API!' });
