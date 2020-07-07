@@ -47,7 +47,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-// PUT /api/onboarding/:id endpoint -
+// PUT /api/onboarding/:id endpoint - Functional!
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const changes = req.body;

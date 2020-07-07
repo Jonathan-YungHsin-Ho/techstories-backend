@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-// PUT /api/internship/:id endpoint -
+// PUT /api/internship/:id endpoint - Functional!
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const changes = req.body;

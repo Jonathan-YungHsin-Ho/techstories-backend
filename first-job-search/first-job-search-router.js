@@ -4,7 +4,7 @@ const FirstJobSearch = require('./first-job-search-model');
 
 const router = express.Router();
 
-// GET /api/firstJobSearch -
+// GET /api/firstJobSearch - Functional!
 router.get('/', (_req, res) => {
 	FirstJobSearch.find()
 		.then((stories) => {
@@ -16,7 +16,7 @@ router.get('/', (_req, res) => {
 		});
 });
 
-// POST /api/firstJobSearch -
+// POST /api/firstJobSearch - Functional!
 router.post('/', (req, res) => {
 	const story = req.body;
 
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
 	}
 });
 
-// PUT /api/firstJobSearch -
+// PUT /api/firstJobSearch - Functional!
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const changes = req.body;
@@ -59,7 +59,7 @@ router.put('/:id', (req, res) => {
 		});
 });
 
-// DELETE /api/firstJobSearch -
+// DELETE /api/firstJobSearch - Functional!
 router.delete('/:id', (req, res) => {
 	FirstJobSearch.remove(req.params.id)
 		.then((count) => {
